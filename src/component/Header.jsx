@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Login from "./login.jsx";
+import Login from "./Login.jsx";
 
 export default function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
