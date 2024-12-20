@@ -17,8 +17,6 @@ const initialState = {
     cart: [],
 }
 
-
-
 // reducer digunakan untuk sifat yg sync
 // extra reducer => async => middleware
 const productSlice = createSlice({
@@ -65,6 +63,11 @@ const productSlice = createSlice({
             })
 
             state.cart = []
+        },
+
+        removeFromCart: (state, action) => {
+            // Menghapus produk dari cart berdasarkan id
+            state.cart = state.cart.filter(product => product.id !== action.payload);
         }
     },
     extraReducers: (builder) => {
@@ -86,5 +89,5 @@ export const fetchProducts = createAsyncThunk("product/fetchProducts", async () 
     return response.data;
 });
 
-export const { addToCart, checkOut } = productSlice.actions
+export const { addToCart, checkOut, removeFromCart } = productSlice.actions
 export default productSlice.reducer
