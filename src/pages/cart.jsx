@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { checkOut, addToCart } from "../redux/slice";
+import { checkOut, addToCart, removeFromCart } from "../redux/slice";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
@@ -30,6 +30,10 @@ function Cart() {
         } else {
             alert("Quantity tidak bisa dikurangi lebih lanjut. Anda dapat menghapus item jika diinginkan.");
         }
+    };
+
+    const handleRemoveItem = (itemId) => {
+        dispatch(removeFromCart(itemId));
     };
 
     const handleCheckout = () => {
@@ -72,6 +76,12 @@ function Cart() {
                                         +
                                     </button>
                                 </div>
+                                <button
+                                    onClick={() => handleRemoveItem(item.id)}
+                                    className="bg-gray-500 text-white px-3 py-1 rounded mt-4 w-full"
+                                >
+                                    Remove
+                                </button>
                             </div>
                         ))}
                     </div>
